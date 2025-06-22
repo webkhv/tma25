@@ -1,18 +1,18 @@
 import { getRequestConfig } from 'next-intl/server';
 
 import { defaultLocale, locales } from './config';
-import { getLocale } from './locale';
 import type { Locale } from './types';
 
-const i18nRequestConfig = getRequestConfig(async () => {
-  const locale = (await getLocale()) as Locale;
+const i18nRequestConfig = getRequestConfig(async ({ locale }) => {
+  // Use the locale parameter provided by next-intl instead of calling getLocale()
+  const currentLocale = locale as Locale;
 
   return {
-    locale,
+    locale: currentLocale,
     messages:
-      locale === defaultLocale || !locales.includes(locale)
+      currentLocale === defaultLocale || !locales.includes(currentLocale)
         ? (await import(`@public/locales/${defaultLocale}.json`)).default
-        : (await import(`@public/locales/${locale}.json`)).default,
+        : (await import(`@public/locales/${currentLocale}.json`)).default,
   };
 });
 
