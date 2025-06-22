@@ -12,8 +12,10 @@ export const localesMap = [
 export type Locale = (typeof locales)[number];
 
 const i18nRequestConfig = getRequestConfig(async ({ locale }) => {
-  // Use the locale parameter provided by next-intl instead of calling getLocale()
-  const currentLocale = locale as Locale;
+  // Ensure we always have a valid locale by falling back to defaultLocale
+  const currentLocale = (locale && locales.includes(locale as Locale)) 
+    ? (locale as Locale) 
+    : defaultLocale;
 
   return {
     locale: currentLocale,
