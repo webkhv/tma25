@@ -1,17 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Bell, 
-  Shield, 
-  MapPin, 
-  Users, 
-  Heart, 
-  HelpCircle, 
-  LogOut,
-  ChevronRight,
-  Toggle
-} from 'lucide-react';
+import { Bell, Shield, MapPin, Users, Heart, HelpCircle, LogOut, ChevronRight, ToggleLeft as Toggle } from 'lucide-react';
 import { BottomNavigation } from '@/components/BottomNavigation/BottomNavigation';
 
 export default function SettingsPage() {
