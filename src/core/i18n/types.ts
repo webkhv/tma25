@@ -1,5 +1,3 @@
-import type { locales } from './config';
-
-type Locale = (typeof locales)[number];
+import type { Locale } from './i18n';
 
 export type { Locale };
